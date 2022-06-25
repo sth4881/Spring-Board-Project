@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kosa.app.mapper.AttachMapper">
+	<!-- 게시물 첨부파일 조회 -->
+	<select id="getAttachList" parameterType="long" resultType="AttachDTO">
+		SELECT uuid, fname, fpath, ftype FROM t_attach WHERE ano = #{ano}
+	</select>
+	
+	<!-- 게시물에 첨부파일 삽입 -->
+	<insert id="insertAttachFile" parameterType="AttachDTO">
+		INSERT INTO t_attach(uuid, fname, fpath, ftype, ano)
+		VALUES(#{uuid}, #{fname}, #{fpath}, #{ftype}, #{ano})
+	</insert>
+	
+	<!-- 게시물에서 첨부파일 제거 -->
+	<delete id="deleteAttachFiles" parameterType="long">
+		DELETE FROM t_attach WHERE ano = #{ano}
+	</delete>
+</mapper>

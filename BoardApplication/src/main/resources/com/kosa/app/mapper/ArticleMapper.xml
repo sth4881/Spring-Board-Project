@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kosa.app.mapper.ArticleMapper">
+	<!-- 게시물 개수 반환 -->
+	<select id="getArticleCount" resultType="long">
+		SELECT count(*) AS cnt FROM t_article
+	</select>
+	
+	<!-- 게시물 목록 조회 -->
+	<select id="getArticleList" parameterType="long" resultType="ArticleDTO">
+		SELECT B.*
+		FROM (SELECT rownum AS rnum, A.*
+	        FROM (SELECT ano, title, author, viewcount
+	        	FROM t_article
+	        	ORDER BY ano DESC) A) B
+		WHERE rnum between #{startNum} and #{endNum}
+	</select>
+	
+	<!-- 게시물 상세내용 조회 -->
+	<select id="getArticleDetail" parameterType="ArticleDTO" resultType="ArticleDTO">
+		SELECT ano, title, content, author, createdat, updatedat, viewcount
+		FROM t_article WHERE ano=#{ano}
+	</select>
+	
+	<!-- 게시물 조회수 증가 -->
+	<select id="updateViewCount" parameterType="ArticleDTO">
+		UPDATE t_article SET viewcount=viewcount+1 WHERE ano=#{ano}
+	</select>
+	
+	<!-- 게시글 등록하기, keyColumn은 테이블의 어느 속성을 받을지 설정,  keyProperty는 반환된 값을 어느 필드에 넣어줄지 설정 -->
+	<insert id="insertArticle" parameterType="ArticleDTO" useGeneratedKeys="true" keyColumn="ano" keyProperty="ano">
+		INSERT INTO t_article(ano, title, author, password, content)
+		VALUES(t_article_no_seq.nextval, #{title}, #{author}, #{password}, #{content})
+	</insert>
+	
+	<!-- 게시글 수정하기 -->
+	<update id="updateArticle" parameterType="ArticleDTO">
+		UPDATE t_article SET title=#{title}, content=#{content}, updatedat=sysdate
+		WHERE ano=#{ano} AND password=#{password}
+	</update>
+	
+	<!-- 게시글 삭제하기 -->
+	<delete id="deleteArticle" parameterType="ArticleDTO">
+		DELETE t_article WHERE ano=#{ano} AND password=#{password}
+	</delete>
+</mapper>
