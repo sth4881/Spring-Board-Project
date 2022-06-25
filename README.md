@@ -3,7 +3,7 @@
 ## 💡 About Project
 - Spring 프레임워크를 활용해보기 위한 목적으로 게시판 CRUD 프로젝트를 진행했습니다.
 
-## 🎲🎯Functions
+## 🎲 Functions
 - 게시글을 등록 및 수정, 삭제할 수 있습니다.
 - 게시글에 댓글을 쓰거나 삭제할 수 있습니다.
 - 게시글에 파일을 첨부하거나 다운로드할 수 있습니다.
@@ -17,7 +17,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 
-## PPT
+## 📄 PPT
 <img src="https://raw.githubusercontent.com/sth4881/Spring-Board-Project/main/img/1.JPG" />
 <img src="https://raw.githubusercontent.com/sth4881/Spring-Board-Project/main/img/2.JPG" />
 <img src="https://raw.githubusercontent.com/sth4881/Spring-Board-Project/main/img/3.JPG" />
